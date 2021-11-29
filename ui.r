@@ -1,6 +1,4 @@
 library(shiny)
-library(shinysurveys)
-library(shinydashboard)
 library("googlesheets4")
 library("DT")
 library(gargle)
