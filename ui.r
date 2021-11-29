@@ -1,3 +1,12 @@
+library(shiny)
+library(shinysurveys)
+library(shinydashboard)
+library("googlesheets4")
+library("DT")
+library(gargle)
+library(shinythemes)
+library(googledrive)
+
 # Defining the Demographic Variable
 ages_interval <- c('0-18', '19-25', '25-35', '35-45', '45-55', '55-65', '>65')
 sex_interval <-  c('Male', 'Famale', 'Other')
