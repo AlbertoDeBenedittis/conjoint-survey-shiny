@@ -1,0 +1,70 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+# Loading the requireed libraries
+library(mlogit)
+```
+
+# Choice-Based Conjoint Anlysis
+
+In the following R Markdown, a dataset containing the answers of a choice-based conjoint survey in order to understand the prefereces of customers relatively to the Trading Apps. 
+
+## Data Exploration. 
+Let's start by loading the dataset 
+```{r}
+df <- read.csv('C:/Users/alber/Desktop/UniTn/Data Science/Third Semester/Laboraotry of Business and Customer analytics/Project_Real/survey_results.csv')
+```
+Now that the dataset is loaded, it is possible to do a bit of data exploration. 
+```{r}
+dim(df)
+```
+The dataset  contains 863 observations and 11 columns.
+```{r}
+names(df)
+```
+The above are the names of the columns of the dataset. 
+We can drop both `X` and `index`. 
+```{r}
+df <-  df[,-c(1)]
+```
+Now that unuseful columns have been removed, it is possible to a closer look to the data. 
+```{r}
+summary(df)
+```
+
+Let's compute the descriptive statistics 
+```{r}
+xtabs(choice ~ Platform, data=df)
+xtabs(choice ~ Deposit, data=df)
+xtabs(choice ~ Fees, data=df)
+xtabs(choice ~ Financial_Instrument, data=df)
+xtabs(choice ~ Leverage, data=df)
+xtabs(choice ~ Social_Trading, data=df)
+xtabs(choice ~ position, data=df)
+
+```
+Now, it is possible to recode some variables
+```{r}
+df$Platform <- as.factor(df$Platform)
+df$Deposit <-  as.factor(df$Deposit)
+df$Fees <-  as.factor(df$Fees)
+df$Financial_Instrument <-  as.factor(df$Financial_Instrument)
+df$Leverage <-  as.factor(df$Leverage)
+df$Social_Trading <-  as.factor(df$Social_Trading)
+```
+
+
+It is now time to fit a choice model. In order to do this, it is necessary to transform the dataset. 
+```{r}
+df.mlogit <- dfidx(df, idx = list(c("resp.id","ques"), "position"))
+
+```
+
+
+
+
+
+
+
